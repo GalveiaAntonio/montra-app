@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="login-screen" id="loginScreen">
+        <article class="login-card">
+            <div class="brand-mark">M</div>
+
+            <h1>Montra</h1>
+            <p class="sub">your finance tracker</p>
+
+            <div class="login-tabs">
+                <button type="button" class="active" id="tabSignIn">Login</button>
+                <button type="button" id="tabSignUp">Register</button>
+            </div>
+
+            <form id="authForm">
+                <label for="authEmail">Email</label>
+                <input id="authEmail" type="email" placeholder="name@email.com" autocomplete="email" required>
+
+                <label for="authPassword">Password</label>
+                <input id="authPassword" type="password" placeholder="minimum 6 characters"
+                    autocomplete="current-password" required>
+
+                <div class="login-msg" id="authMsg"></div>
+
+                <button class="login-submit" type="submit" id="authSubmit">Login</button>
+            </form>
+        </article>
+    </div>
+
+    <div id="app" hidden>
+        <header class="top">
+            <div class="top-inner">
+                <div class="brand-row">
+                    <div class="brand">
+                        <div class="brand-mark">M</div>
+                        <div>
+                            <h1>Finances</h1>
+                            <span class="sub" id="userEmail"></span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+
+                <nav class="brand-row" style="margin-top:14px;" aria-label="Month navigation">
+                    <div class="month-nav">
+                        <button id="prevMonth" aria-label="Previous Month">‹</button>
+                        <span class="month-label" id="monthLabel">—</span>
+                        <button id="nextMonth" aria-label="Next Month">›</button>
+                    </div>
+                </nav>
+
+                <section class="summary-row" aria-label="Monthly summary">
+                    <article class="summary-card">
+                        <div class="lbl">Entries</div>
+                        <div class="val positive num" id="totalIncome">€0,00</div>
+                    </article>
+                    <article class="summary-card">
+                        <div class="lbl">Expenses</div>
+                        <div class="val negative num" id="totalExpense">€0,00</div>
+                    </article>
+                    <article class="summary-card">
+                        <div class="lbl">Monthly Balance</div>
+                        <div class="val num" id="totalBalance">€0,00</div>
+                    </article>
+                </section>
+            </div>
+        </header>
+
+
+        <div class="wrap">
+            <main class="grid">
+                <section>
+                    <section class="card">
+                        <header class="card-head">
+                            <h2>Entries</h2>
+                            <div class="head-actions">
+                                <button class="ghost-btn" id="exportCsv">Export to CSV</button>
+                                <button class="ghost-btn" id="exportXlsx">Export to Excel</button>
+                                <button class="primary-btn" id="toggleForm">+ New Entry</button>
+                            </div>
+                        </header>
+
+
+                        <form class="entry" id="entryForm">
+                            <div class="seg">
+                                <button type="button" data-type="income" class="type-btn">Income</button>
+                                <button type="button" data-type="expense" class="type-btn active">Expense</button>
+                            </div>
+
+                            <div class="field-grid">
+                                <div class="field">
+                                    <label for="fDate">Date</label>
+                                    <input type="date" id="fDate" required>
+                                </div>
+                                <div class="field">
+                                    <label for="fCategory">Category</label>
+                                    <select id="fCategory"></select>
+                                </div>
+                                <div class="field full">
+                                    <label for="fDesc">Description</label>
+                                    <input type="text" id="fDesc" placeholder="Eg.: Market, Wage, Clothes...">
+                                </div>
+                                <div class="field">
+                                    <label for="fAmount">Value (€)</label>
+                                    <input type="number" id="fAmount" min="0" step="0.01" placeholder="0,00">
+                                </div>
+                            </div>
+
+                            <div class="error-msg" id="formError">
+                                Write a valid description and value, please.
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="ghost-btn" id="cancelForm">Cancel</button>
+                                <button type="submit" class="primary-btn">Register</button>
+                            </div>
+
+                        </form>
+
+                        <div id="ledgerList"></div>
+                    </section>
+                </section>
+
+                <aside>
+                    <section class="card">
+                        <header class="card-head">
+                            <h2>Expenses by Category</h2>
+                            <span class="hint" id="expenseMonthHint"></span>
+                        </header>
+
+                        <div id="categoryBreakdown"></div>
+                    </section>
+
+
+                    <section class="card">
+                        <header class="card-head">
+                            <h2>Budgets</h2>
+                        </header>
+
+                        <div id="budgetList"></div>
+
+                        <form class="mini-form" id="budgetForm">
+                            <select id="bCategory"></select>
+                            <input type="number" id="bLimit" min="0" step="1" placeholder="Limite €">
+                            <button type="submit" class="ghost-btn">Setup</button>
+                        </form>
+                    </section>
+
+
+                    <section class="card">
+                        <header class="card-head">
+                            <h2>Savings Goals</h2>
+                            <button class="ghost-btn" id="toggleGoalForm">+ Goal</button>
+                        </header>
+
+                        <form class="entry" id="goalForm" style="margin-bottom:16px;">
+                            <div class="field-grid">
+                                <div class="field full">
+                                    <label for="gName">Goal Name</label>
+                                    <input type="text" id="gName" placeholder="Eg.: new car">
+                                </div>
+                                <div class="field">
+                                    <label for="gTarget">Goal value (€)</label>
+                                    <input type="number" id="gTarget" min="1" step="1" placeholder="1000">
+                                </div>
+                                <div class="field">
+                                    <label for="gCurrent">Saved (€)</label>
+                                    <input type="number" id="gCurrent" min="0" step="1" placeholder="0" value="0">
+                                </div>
+                            </div>
+
+                            <div class="error-msg" id="goalError">
+                                Write a valid name and value, please.
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="ghost-btn" id="cancelGoalForm">Cancel</button>
+                                <button type="submit" class="primary-btn">Create goal</button>
+                            </div>
+                        </form>
+                        <div id="goalList"></div>
+                    </section>
+                </aside>
+            </main>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
