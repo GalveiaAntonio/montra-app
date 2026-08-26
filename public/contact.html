@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Montra</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="nav">
+        <div class="wrap nav-row">
+            <a href="/" class="logo"><span class="logo-mark">M</span>Montra</a>
+            <nav class="nav-links">
+                <a href="/#sobre">About</a>
+                <a href="/#funcionalidades">Features</a>
+                <a href="/#exemplo">Example</a>
+                <a href="#">Contacts</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="tracker/?mode=login" class="btn btn-ghost btn-sm">Login</a>
+                <a href="tracker/?mode=register" class="btn btn-primary btn-sm">Create an Account</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-glow" aria-hidden="true"></div>
+            <div class="wrap">
+                <span class="eyebrow">Contact</span>
+                <h1 class="page-title">Tell me what you need - I'll answer quickly.</h1>
+                <p class="page-sub">Questions about Montra, feature ideas or just a hello? The developer reads eveything
+                    you send.</p>
+            </div>
+        </section>
+
+
+        <section class="contact">
+            <div class="wrap contact-grid">
+
+                <aside class="info-card">
+                    <div>
+                        <h3>Talk to the Developer</h3>
+                        <p>I'll reply as soon as possible.</p>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c6c1ff" stroke-width="1.8">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 7l9 6 9-6" />
+                            </svg></div>
+                        <div>
+                            <h4>Email</h4><a href="mailto:antonioalves.galveia@gmail.com">antonioalves.galveia@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c6c1ff" stroke-width="1.8">
+                                <path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Lisbon, Portugal</p>
+                        </div>
+                    </div>
+
+                    <nav class="info-social" aria-label="Redes sociais">
+                        <a href="https://www.instagram.com/galveiadev/" aria-label="Instagram" target="_blank"><svg
+                                width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8">
+                                <rect x="3" y="3" width="18" height="18" rx="5" />
+                                <circle cx="12" cy="12" r="4" />
+                                <circle cx="17.5" cy="6.5" r="1" />
+                            </svg></a>
+                        <a href="https://x.com/galveia_iam" aria-label="X" target="_blank"><svg width="14" height="14"
+                                viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8">
+                                <path d="M4 4l16 16M20 4L4 20" />
+                            </svg></a>
+                    </nav>
+                </aside>
+
+                <div class="form-card" id="formCard">
+                    <form id="contactForm" action="https://formspree.io/f/xaewgbzd" method="POST">
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="nome">Name</label>
+                                <input type="text" id="nome" name="Name" placeholder="Your name" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="field full">
+                                <label for="assunto">Topic</label>
+                                <select id="assunto" name="Topic">
+                                    <option>General question</option>
+                                    <option>Feature suggestion</option>
+                                    <option>Report a problem</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="field full">
+                                <label for="mensagem">Message</label>
+                                <textarea id="mensagem" name="Message" placeholder="Tell me how can I help..."
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row" style="display: flex; justify-content: center;">
+                            <button type="submit" class="btn btn-fill" style="width: 70%;">Send message</button>
+                        </div>
+                        <div class="form-row" style="display: flex; justify-content: center;">
+                            <p class="form-note">By submitting, you agree that I may use this data solely to respond to
+                                you.</p>
+                        </div>
+                    </form>
+                    <div class="success-msg" role="status" aria-live="polite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f6b45" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M8 12l3 3 5-6" />
+                        </svg>
+                        <span>Message sent! Montra's developer will reply to you very soon!</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="wrap">
+                <header class="page-sub" style="max-width:600px">
+                    <span class="eyebrow">Frequently Asked Questions</span>
+                </header>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h4>Does Montra connect to my bank?</h4>
+                        <p>No. Montra doesn't offer bank integrations - you record each income and expense manually,
+                            which keeps everything simple and under your control.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h4>Is my data shared?</h4>
+                        <p>Montra does not share your financial data with third parties. It is used solely to show you your
+                            own summaries and budgets.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h4>Can I use Montra for free?</h4>
+                        <p>Yes, creating an account and starting to record transactions is absolutely free.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h4>How do I report an error?</h4>
+                        <p>Use the form above with the subject "Report a problem" - describe what happened, and the dev
+                            will reply as soon as possible.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><span class="logo-mark">M</span>Montra</a>
+                    <p>Your finances, in Montra. A clear view of your money, every day.</p>
+                </div>
+                <nav class="footer-col">
+                    <h5>Product</h5>
+                    <a href="/#funcionalidades">Features</a>
+                    <a href="/#exemplo">Example</a>
+                </nav>
+                <nav class="footer-col">
+                    <h5>Company</h5>
+                    <a href="/#sobre">About Montra</a>
+                    <a href="#">Contacts</a>
+                </nav>
+                <nav class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms of Service</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Montra. All rights reserved.</span>
+                <span class="footer-credit">Built by <a href="https://galveiadev.vercel.app/" target="_blank">António
+                        Galveia</a></span>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/galveiadev/" aria-label="Instagram" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
+                    <a href="https://x.com/galveia_iam" aria-label="X" target="_blank">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8">
+                            <path d="M4 4l16 16M20 4L4 20" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const form = document.getElementById('contactForm');
+        const formCard = document.getElementById('formCard');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formCard.classList.add('sent');
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send message';
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send message';
+                alert('Network error. Please try again.');
+            }
+        });
+    </script>
+</body>
+
+</html>

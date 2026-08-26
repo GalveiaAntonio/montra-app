@@ -8,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
@@ -21,7 +23,7 @@
             <div class="brand-mark">M</div>
 
             <h1>Montra</h1>
-            <p class="sub">your finance tracker</p>
+            <p class="sub">Your finances, in Montra</p>
 
             <div class="login-tabs">
                 <button type="button" class="active" id="tabSignIn">Login</button>
@@ -40,6 +42,7 @@
 
                 <button class="login-submit" type="submit" id="authSubmit">Login</button>
             </form>
+            <a href="/" style="font-size: 0.8em; color: var(--text-soft); width: 100%; display: flex; justify-content: center; margin-top: 10px;">Back to homepage</a>
         </article>
     </div>
 
@@ -50,7 +53,7 @@
                     <div class="brand">
                         <div class="brand-mark">M</div>
                         <div>
-                            <h1>Finances</h1>
+                            <h1>Montra</h1>
                             <span class="sub" id="userEmail"></span>
                         </div>
                     </div>
@@ -69,7 +72,7 @@
 
                 <section class="summary-row" aria-label="Monthly summary">
                     <article class="summary-card">
-                        <div class="lbl">Entries</div>
+                        <div class="lbl">Income</div>
                         <div class="val positive num" id="totalIncome">€0,00</div>
                     </article>
                     <article class="summary-card">
@@ -159,7 +162,7 @@
 
                         <form class="mini-form" id="budgetForm">
                             <select id="bCategory"></select>
-                            <input type="number" id="bLimit" min="0" step="1" placeholder="Limite €">
+                            <input type="number" id="bLimit" min="0" step="1" placeholder="Limit €">
                             <button type="submit" class="ghost-btn">Setup</button>
                         </form>
                     </section>

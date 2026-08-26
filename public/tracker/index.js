@@ -80,6 +80,8 @@
             currentUser = await api('/auth/me');
             await enterApp();
         } catch {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('mode') === 'register') setAuthMode('signup');
             loginScreen.hidden = false;
         }
     }
@@ -254,7 +256,7 @@
             let cls = ''; if (spent > limit) cls = 'over'; else if (pct >= 80) cls = 'warn';
             return `<div class="budget-row"><div class="budget-top"><span class="cat">${escapeHtml(b.category)}</span><span class="figs">${money(spent)} / ${money(limit)}</span></div>
       <div class="budget-track"><div class="budget-fill ${cls}" style="width:${pct}%"></div></div>
-      <button class="budget-del" data-del-budget="${b.id}">Remove budget</button></div>`;
+      <button class="budget-del" data-del-budget="${b.id}">Delete budget</button></div>`;
         }).join('');
         el.querySelectorAll('[data-del-budget]').forEach(btn => btn.addEventListener('click', () => deleteBudget(btn.dataset.delBudget)));
     }
