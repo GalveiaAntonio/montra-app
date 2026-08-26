@@ -10,27 +10,33 @@
             "use": "@vercel/static"
         }
     ],
-    "rewrites": [
+    "routes": [
         {
-            "source": "/api/:path*",
-            "destination": "/api/index.js"
+            "src": "/api/(.*)",
+            "dest": "api/index.js"
         },
         {
-            "source": "/",
-            "destination": "/public/index.html"
+            "src": "/tracker$",
+            "dest": "/public/tracker/index.html"
         },
         {
-            "source": "/tracker",
-            "destination": "/public/tracker/index.html"
+            "src": "/tracker/$",
+            "dest": "/public/tracker/index.html"
         },
         {
-            "source": "/tracker/",
-            "destination": "/public/tracker/index.html"
+            "src": "/([^./]+)\\.html$",
+            "status": 308,
+            "headers": {
+                "Location": "/$1"
+            }
         },
         {
-            "source": "/:path*",
-            "destination": "/public/:path*"
+            "src": "/([^./]+)$",
+            "dest": "/public/$1.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/public/$1"
         }
-    ],
-    "cleanUrls": true
+    ]
 }
