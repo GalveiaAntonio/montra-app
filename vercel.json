@@ -1,24 +1,36 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/index.js"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/public/:path*"
-    }
-  ],
-  "cleanUrls": true
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/index.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "/api/index.js"
+        },
+        {
+            "source": "/",
+            "destination": "/public/index.html"
+        },
+        {
+            "source": "/tracker",
+            "destination": "/public/tracker/index.html"
+        },
+        {
+            "source": "/tracker/",
+            "destination": "/public/tracker/index.html"
+        },
+        {
+            "source": "/:path*",
+            "destination": "/public/:path*"
+        }
+    ],
+    "cleanUrls": true
 }
