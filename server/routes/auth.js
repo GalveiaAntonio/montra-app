@@ -54,8 +54,21 @@ authRouter.post('/logout', (req, res) => {
 
 authRouter.get('/me', async (req, res) => {
   const userId = readToken(req);
-  if (!userId) return res.status(401).json({ error: 'No session.' });
-  const result = await pool.query('select id, email from users where id = $1', [userId]);
-  if (result.rows.length === 0) return res.status(401).json({ error: 'No session.' });
-  res.json(result.rows[0]);
+    if (!userId) return res.status(401).json({ error: 'No session.' });
+
+    try {
+        const result = await pool.query(
+            'select id, email from users where id = $1',
+            [userId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'No session.' });
+        }
+
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'There was an error checking the session.' });
+    }
 });

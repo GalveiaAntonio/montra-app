@@ -12,14 +12,25 @@ transactionsRouter.get('/', async (req, res) => {
 });
 
 transactionsRouter.post('/', async (req, res) => {
-  const { date, type, category, description, amount } = req.body || {};
-  if (!date || !['income', 'expense'].includes(type) || !category || !amount || amount <= 0) {
+  const date = String(req.body?.date || '');
+  const type = req.body?.type;
+  const category = String(req.body?.category || '').trim();
+  const description = String(req.body?.description || '').trim();
+  const amount = Number(req.body?.amount);
+
+  if (
+    !date ||
+    !['income', 'expense'].includes(type) ||
+    !category ||
+    !Number.isFinite(amount) ||
+    amount <= 0
+  ) {
     return res.status(400).json({ error: 'Invalid entry data.' });
   }
   const result = await pool.query(
     `insert into transactions (user_id, date, type, category, description, amount)
      values ($1,$2,$3,$4,$5,$6) returning *`,
-    [req.userId, date, type, category, description || '', amount]
+    [req.userId, date, type, category, description, amount]
   );
   res.status(201).json(result.rows[0]);
 });
