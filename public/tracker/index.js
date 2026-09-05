@@ -38,7 +38,12 @@
         tabSignIn.classList.toggle('active', mode === 'signin');
         tabSignUp.classList.toggle('active', mode === 'signup');
         authSubmit.textContent = mode === 'signin' ? 'Login' : 'Register';
-        authMsg.textContent = ''; authMsg.className = 'login-msg';
+
+        document.getElementById('authPassword').autocomplete =
+            mode === 'signin' ? 'current-password' : 'new-password';
+
+        authMsg.textContent = '';
+        authMsg.className = 'login-msg';
     }
     tabSignIn.addEventListener('click', () => setAuthMode('signin'));
     tabSignUp.addEventListener('click', () => setAuthMode('signup'));
@@ -47,7 +52,7 @@
         e.preventDefault();
         const email = document.getElementById('authEmail').value.trim();
         const password = document.getElementById('authPassword').value;
-        if (!email || !password) { authMsg.textContent = 'Provide an email and a password.'; authMsg.className = 'login-msg error'; return; }
+        if (!email || !password || password.length < 6) { authMsg.textContent = 'Provide an email and a password.'; authMsg.className = 'login-msg error'; return; }
         authSubmit.disabled = true;
         try {
             const user = await api(authMode === 'signin' ? '/auth/login' : '/auth/register', { method: 'POST', body: { email, password } });
@@ -62,10 +67,13 @@
     });
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {
-        await api('/auth/logout', { method: 'POST' });
-        currentUser = null;
-        appEl.hidden = true;
-        loginScreen.hidden = false;
+        try {
+            await api('/auth/logout', { method: 'POST' });
+        } finally {
+            currentUser = null;
+            appEl.hidden = true;
+            loginScreen.hidden = false;
+        }
     });
 
     async function enterApp() {

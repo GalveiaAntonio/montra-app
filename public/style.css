@@ -1641,8 +1641,8 @@ CONTACT PAGE
   .form-note {
       font-size: .78rem;
       color: var(--muted);
-    max-width: 80%;
-    text-align: center;
+      max-width: 80%;
+      text-align: center;
   }
 
   .success-msg {
@@ -1711,15 +1711,11 @@ CONTACT PAGE
       .faq-grid {
           grid-template-columns: 1fr;
       }
-  }
 
-  @media (max-width:860px) {
       .nav-links {
           display: none;
       }
-  }
 
-  @media (max-width:860px) {
       .hero-grid {
           grid-template-columns: 1fr;
       }
@@ -1728,15 +1724,7 @@ CONTACT PAGE
           height: 380px;
           margin-top: 12px;
       }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-      .pane {
-          animation: none;
-      }
-  }
-
-  @media (max-width:860px) {
       .features-grid {
           grid-template-columns: 1fr;
       }
@@ -1745,9 +1733,7 @@ CONTACT PAGE
           grid-template-columns: 1fr;
           gap: 40px;
       }
-  }
 
-  @media (max-width:860px) {
       .app-body {
           grid-template-columns: 1fr;
       }
@@ -1755,9 +1741,7 @@ CONTACT PAGE
       .app-summary {
           grid-template-columns: 1fr;
       }
-  }
 
-  @media (max-width:860px) {
       .footer-top {
           grid-template-columns: 1fr 1fr;
       }
@@ -1770,9 +1754,7 @@ CONTACT PAGE
       .footer-social {
           justify-self: center;
       }
-  }
 
-  @media (max-width:860px) {
       .contact-grid {
           grid-template-columns: 1fr;
       }
@@ -1780,4 +1762,19 @@ CONTACT PAGE
       .form-row {
           grid-template-columns: 1fr;
       }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html{
+        scroll-behavior: auto;
+    }  
+    
+    .pane {
+          animation: none;
+    }
+
+    .reveal{
+        transition: none;
+        transform: none;
+    }
   }
